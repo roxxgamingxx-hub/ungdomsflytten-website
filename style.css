@@ -1,0 +1,715 @@
+:root {
+  --bg: #f7f8fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --brand: #0a66c2;      /* huvudblå */
+  --brand-2: #0e4ea1;    /* hover-blå */
+  --ring: rgba(10, 102, 194, 0.2);
+  --shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+}
+
+.container {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+}
+
+/* HEADER */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
+  border-bottom: 1px solid #eef2f7;
+  backdrop-filter: saturate(180%) blur(6px);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .9rem 0;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  text-decoration: none;
+  color: inherit;
+}
+.logo {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+}
+.brand-name {
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: var(--text);
+  padding: .5rem .7rem;
+  border-radius: .5rem;
+  font-weight: 600;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: .7rem;
+  right: .7rem;
+  bottom: .35rem;
+  height: 2px;
+  background: transparent;
+  transition: background .2s, width .2s;
+}
+.nav-link:hover { background: #f2f6ff; }
+.nav-link:hover::after { background: var(--brand); }
+
+
+
+
+
+.hero h1 {
+  font-size: clamp(32px, 5vw, 54px);
+  margin: 0 0 .6rem;
+  line-height: 1.15;
+}
+
+/* Uppdaterad, större undertitel */
+
+
+/* HERO – enkel, stabil variant med bakgrundsbild + overlay */
+.hero {
+  position: relative;
+  min-height: 60vh;
+  padding: 4rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  background-image: url('DSC01565.jpg'); /* samma bild som process */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 30%;      /* justera utsnitt vid behov */
+  background-attachment: scroll;        /* undvik strul här */
+  color: #fff;
+}
+
+/* overlay direkt på hero via ::before */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.85),
+    rgba(10, 102, 194, 0.55)
+  );
+  z-index: 0;
+}
+
+/* innehållet ovanpå overlay */
+.hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 5vw, 54px);
+  margin: 0 0 .6rem;
+  line-height: 1.15;
+}
+
+.hero p {
+  max-width: 720px;
+  margin: 0 auto 2rem;
+  color: #e5e7eb;
+  font-size: clamp(18px, 2.8vw, 22px);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+
+
+
+.hero h1 {
+  font-size: clamp(28px, 5vw, 48px);
+  line-height: 1.15;
+  margin: 0 0 .6rem;
+}
+.hero p {
+  color: var(--muted);
+  max-width: 720px;
+  font-style: italic;
+  margin: 0 auto 1.8rem;
+  margin-top: 30px;
+  font-size: clamp(16px, 2.2vw, 25px);
+  color: rgb(255, 255, 255);
+}
+.cta {
+  display: flex;
+  gap: .8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn{
+  display:inline-block;
+  text-decoration:none;
+  cursor:pointer;
+  background:var(--brand);
+  color:#fff;
+  font-weight:700;
+  padding:.9rem 1.6rem;
+  border-radius:999px;            /* oval */
+  box-shadow:var(--shadow);
+  transition:transform .08s ease, background .15s, box-shadow .15s;
+}
+.btn:hover{
+  background:var(--brand-2);
+  transform:translateY(-1px);
+  box-shadow:0 14px 40px rgba(15,23,42,.18);
+}
+.btn-ghost{
+  background:#fff;
+  color:var(--brand);
+  border:2px solid var(--brand);
+}
+.hero-subtext{
+  margin-top:1rem;
+  color:#e5e7eb;
+  font-size:.95rem;
+}
+.hero-subtext a{
+  color:#fff;
+  font-weight:600;
+  text-decoration:underline;
+}
+.hero-subtext a:hover{
+  text-decoration:none;
+}
+
+/* SECTIONS */
+.section { padding: 64px 0; }
+.section h2 {
+  font-size: clamp(22px, 3.2vw, 32px);
+  margin: 0 0 .4rem;
+}
+.lead {
+  color: var(--muted);
+  margin: .2rem 0 2rem;
+}
+
+/* SERVICES – med mjuk bakgrund, redo för bild */
+.services{
+  position:relative;
+  background-image:url('services-bg.jpg'); /* byt filnamn om du vill */
+  background-size:cover;
+  background-position:center;
+}
+.services-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom, rgba(248,250,252,0.96), rgba(241,245,249,0.96));
+}
+.services .container{
+  position:relative;
+}
+.services-lead{
+  font-size:clamp(17px, 2.4vw, 19px);
+  margin-bottom:2rem;
+}
+
+/* SERVICE CARDS */
+.cards {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.card {
+  background: var(--card);
+  border: 1px solid #eef2f7;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  transition: transform .08s ease, box-shadow .15s, border-color .15s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #e0e7ff;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, .12);
+}
+.card h3 { margin: .2rem 0 .35rem; }
+.card p { color: var(--muted); margin: 0; }
+
+/* OM OSS – text + galleri */
+.section-alt {
+  background: #fff;
+  border-top: 1px solid #eef2f7;
+  border-bottom: 1px solid #eef2f7;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+.about-text {
+  text-align: left;
+}
+.about-text p {
+  color: #444;
+  margin-bottom: 1.2rem;
+}
+.about-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.about-gallery img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.about-gallery img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+/* KONTAKT – inspirerad av Flyttella */
+.contact-section .lead{
+  margin-bottom:1.6rem;
+}
+.contact-layout{
+  display:grid;
+  gap:24px;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items:flex-start;
+}
+.contact-info-block{
+  text-align:left;
+}
+.contact-info-block h3{
+  margin:0 0 .2rem;
+}
+.contact-info-block p{
+  margin:0 0 .8rem;
+  color:#4b5563;
+}
+.contact-info-block a{
+  color:var(--brand);
+  text-decoration:none;
+}
+.contact-info-block a:hover{
+  text-decoration:underline;
+}
+.contact-card{
+  background:#fff;
+  border:1px solid #e9eef6;
+  border-radius:16px;
+  padding:22px;
+  box-shadow:0 8px 26px rgba(15,23,42,.06);
+  transition: transform .08s ease, box-shadow .15s, border-color .15s;
+}
+.contact-card:hover{
+  transform: translateY(-2px);
+  box-shadow:0 14px 40px rgba(15,23,42,.10);
+  border-color:#dfe7fb;
+}
+.form-card h3{
+  margin-top:0;
+}
+.small-lead{
+  color:#6b7280;
+  font-size:.95rem;
+  margin-top:.1rem;
+  margin-bottom:1.1rem;
+}
+.field{
+  display:flex;
+  flex-direction:column;
+  text-align:left;
+  margin-bottom:1rem;
+}
+.field label{
+  font-size:.93rem;
+  font-weight:600;
+  color:#374151;
+  margin-bottom:6px;
+}
+.field input,
+.field select,
+.field textarea{
+  border:1px solid #d7deea;
+  border-radius:10px;
+  padding:.8rem .9rem;
+  font-size:1rem;
+  outline:none;
+  background:#fff;
+  transition:border-color .12s, box-shadow .12s;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:#96b7ff;
+  box-shadow:0 0 0 4px rgba(10,102,194,.15);
+}
+.actions{
+  margin-top:.7rem;
+}
+/* PROCESS – 6 steg i rak linje på desktop */
+
+.process {
+  position:relative;
+  color:#fff;
+  padding:64px 0;
+  background-image:url('DSC01593.jpg');
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:center bottom;
+  background-attachment:fixed;
+}
+
+
+.process-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(15,23,42,0.88), rgba(10,102,194,0.55));
+}
+.process-inner{
+  position:relative;
+}
+.process h2{
+  font-size:clamp(26px, 3.4vw, 34px);
+  margin:0 0 .3rem;
+}
+.process-lead{
+  color:#e5e7eb;
+  font-size:clamp(17px, 2.4vw, 19px);
+  margin-bottom:2.2rem;
+}
+
+/* 6 rutor i rad med mer luft */
+.steps-row{
+  display:grid;
+  gap:25px;                      /* mer space mellan */
+  grid-template-columns:repeat(6, minmax(0,1fr));
+}
+.step-card{
+  background:rgba(15,23,42,0.9);
+  border:1px solid rgba(255,255,255,0.16);
+  border-radius:16px;
+  padding:16px 14px;
+  box-shadow:0 10px 30px rgba(15,23,42,0.45);
+  transition:transform .1s ease, box-shadow .18s, border-color .18s;
+}
+.step-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 16px 40px rgba(15,23,42,0.65);
+  border-color:rgba(255,255,255,0.35);
+}
+.step-card .icon{
+  width:32px; height:32px; border-radius:999px;
+  background:#fff; color:var(--brand);
+  font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:.5rem;
+  box-shadow:0 6px 18px rgba(0,0,0,0.35);
+}
+.step-card h3{
+  margin:.1rem 0 .2rem;
+  font-size:.98rem;
+}
+.step-card p{
+  color:#e5e7eb;
+  margin:0;
+  font-size:.9rem;
+}
+
+.process-cta{
+  display:flex;
+  justify-content:center;
+  margin-top:2.6rem;   /* knappen längre ner */
+}
+
+/* FOOTER – mer bar-känsla */
+.site-footer{
+  margin-top:40px;
+}
+.footer-top{
+  background:#0f172a;
+  color:#e5e7eb;
+  padding:28px 0;
+}
+.footer-grid{
+  display:grid;
+  gap:24px;
+  grid-template-columns: 1.2fr 0.9fr 0.9fr;
+}
+.footer-col h4{
+  margin:0 0 .4rem;
+}
+.footer-col p{
+  margin:0;
+  color:#9ca3af;
+  font-size:.95rem;
+}
+.footer-col ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.footer-col li{
+  margin:.2rem 0;
+}
+.footer-col a{
+  color:#e5e7eb;
+  text-decoration:none;
+  font-size:.95rem;
+}
+.footer-col a:hover{
+  text-decoration:underline;
+}
+.footer-bottom{
+  background:#020617;
+  color:#9ca3af;
+}
+.footer-bottom-inner{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:10px 0;
+  font-size:.9rem;
+}
+.footer-bottom a{
+  color:#e5e7eb;
+  text-decoration:none;
+}
+.footer-bottom a:hover{
+  text-decoration:underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px){
+  .contact-layout{
+    grid-template-columns:1fr;
+  }
+  .steps-row{
+    grid-template-columns:repeat(3, minmax(0,1fr));
+  }
+}
+@media (max-width: 700px){
+  .about-grid{
+    grid-template-columns:1fr;
+  }
+  .about-gallery{
+    grid-template-columns:repeat(2,1fr);
+    margin-top:1.5rem;
+  }
+}
+@media (max-width: 600px){
+  .about-gallery{
+    grid-template-columns:1fr;
+  }
+  .about-gallery img{
+    height:200px;
+  }
+  .steps-row{
+    grid-template-columns:1fr;
+  }
+}
+@media (max-width: 820px) {
+  .header-inner { gap: .8rem; }
+  .brand-name { display: none; }
+  .nav { gap: .6rem; }
+  .nav-link { padding: .4rem .6rem; font-size: .95rem; }
+}
+@media (max-width: 800px){
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* TRYGGHET & FÖRSÄKRING */
+.trygghet-grid{
+  display:grid;
+  gap:2rem;
+  grid-template-columns:1.4fr 0.6fr;
+  align-items:center;
+}
+.trygghet-text p{
+  color:#444;
+  margin-bottom:1rem;
+}
+.trygghet-logo-card{
+  display:flex;
+  justify-content:center;
+}
+.trygghet-logo-inner{
+  background:#fff;
+  border-radius:16px;
+  padding:18px 20px;
+  border:1px solid #e5e7eb;
+  box-shadow:0 10px 30px rgba(15,23,42,0.08);
+  text-align:center;
+}
+.trygghet-logo-inner span{
+  display:block;
+  font-size:.9rem;
+  color:#6b7280;
+  margin-bottom:.4rem;
+}
+.trygghet-logo-inner img{
+  max-width:200px;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+}
+@media (max-width: 800px){
+  .trygghet-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+
+
+/* TRUSTPILOT-REVIEWS */
+.reviews {
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.reviews h2 {
+  text-align: left;
+}
+
+.reviews .lead {
+  max-width: 640px;
+}
+
+/* Horisontell rad med scroll (likt din process) */
+.reviews-row {
+  margin-top: 1.4rem;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.reviews-row::-webkit-scrollbar {
+  height: 6px;
+}
+.reviews-row::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.6);
+  border-radius: 999px;
+}
+
+/* Själva korten */
+.review-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  min-width: 260px;
+  max-width: 320px;
+  padding: 16px 18px 18px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform .1s ease, box-shadow .18s, border-color .18s;
+}
+
+.review-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+  border-color: #d0e2ff;
+}
+
+/* Stjärnrad */
+.review-stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.tp-star {
+  background: #00b67a;   /* Trustpilot-grön */
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 4px;
+  border-radius: 3px;
+  line-height: 1;
+}
+
+/* Text i kort */
+.review-card h3 {
+  margin: 4px 0 6px;
+  font-size: 1rem;
+}
+
+.review-text {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.review-name {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+/* Trustpilot-badge längst ner */
+.trustpilot-badge {
+  margin-top: 22px;
+  text-align: center;
+}
+
+.tp-logo-row {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.tp-logo-star {
+  background: #00b67a;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 3px 5px;
+  border-radius: 3px;
+}
+
+.tp-text {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.tp-text span {
+  font-weight: 600;
+  color: #111827;
+}
