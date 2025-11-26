@@ -103,7 +103,7 @@ body {
   justify-content: center;
   text-align: center;
 
-  background-image: url('DSC01565.jpg'); /* samma bild som process */
+  background-image: url('bortforslingthom.jpg'); /* samma bild som process */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center 30%;      /* justera utsnitt vid behov */
@@ -713,3 +713,4 @@ body {
   font-weight: 600;
   color: #111827;
 }
+
