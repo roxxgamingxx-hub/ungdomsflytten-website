@@ -1,411 +1,671 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ungdomsflytten – Bortforsling & Flytthjälp</title>
-  <meta name="description" content="Ungdomsflytten – Bortforsling, flytthjälp och tömning av dödsbo." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '863331609415498');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=863331609415498&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+<title>Ungdomsflytten – Flytt utan krångel</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= BASE ================= */
+
+:root{
+  --dark:#020617;
+  --light:#f8fafc;
+  --text:#0f172a;
+  --muted:#64748b;
+  --brand:#0a66c2;
+  --green:#22c55e;
+  --radius:18px;
+  --shadow:0 20px 40px rgba(0,0,0,.12);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Inter,system-ui;
+  background:var(--light);
+  color:var(--text);
+  line-height:1.6;
+}
+
+img{max-width:100%;display:block}
+
+.container{
+  width:min(1200px,92vw);
+  margin:auto;
+}
+
+/* ================= ANIMATIONS ================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .8s ease;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:none;
+}
+
+/* ================= HEADER ================= */
+
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:100;
+}
+
+.header-bar{
+  margin:16px auto;
+  background:#fff;
+  border-radius:999px;
+  padding:.6rem 1.4rem;
+  box-shadow:var(--shadow);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand{
+  display:flex;
+  gap:.5rem;
+  align-items:center;
+  font-weight:900;
+}
+
+.brand img{height:32px}
+
+nav{display:flex;gap:1rem}
+
+nav a{
+  text-decoration:none;
+  font-weight:600;
+  color:var(--text);
+}
+
+nav a:hover{color:var(--brand)}
+
+.btn{
+  background:var(--brand);
+  color:#fff;
+  padding:.7rem 1.3rem;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:700;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  background:#084c94;
+}
+
+.btn-green{
+  background:var(--green);
+  color:#022c22;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  min-height:100vh;
+  background:
+  linear-gradient(120deg,rgba(2,6,23,.9),rgba(2,6,23,.6)),
+  url('ungdomsflyttenlogaa.jpg') center/cover;
+  display:flex;
+  align-items:center;
+  color:#fff;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:3rem;
+  align-items:center;
+}
+
+.hero h1{
+  font-size:clamp(42px,7vw,78px);
+  line-height:1;
+  font-weight:900;
+}
+
+.hero h1 span{color:var(--green)}
+
+.hero p{
+  font-size:1.2rem;
+  max-width:520px;
+  color:#e5e7eb;
+}
+
+.hero-cta{
+  display:flex;
+  gap:.8rem;
+  margin-top:1.5rem;
+}
+
+/* FORM */
+
+.hero-form{
+  background:#fff;
+  color:var(--text);
+  border-radius:var(--radius);
+  padding:28px;
+  box-shadow:var(--shadow);
+}
+
+.hero-form h3{margin:0 0 1rem}
+
+.field{margin-bottom:.8rem}
+
+.field label{
+  font-size:.8rem;
+  font-weight:700;
+}
+
+.field input,
+.field textarea{
+  width:100%;
+  padding:.6rem;
+  border-radius:8px;
+  border:1px solid #cbd5e1;
+}
+
+/* ================= TRUST ================= */
+
+.trust{
+  background:#fff;
+  padding:30px 0;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.trust-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:120px;
+  align-items:center;
+  text-align:center;
+}
+
+.trust-logo{
+  height:45px;
+  margin:auto;
+  object-fit:contain;
+}
+
+.trust-item span{
+  font-size:.9rem;
+  color:var(--muted);
+}
+
+/* ================= SERVICES ================= */
+
+.services{
+  padding:100px 0;
+}
+
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:28px;
+}
+
+.service{
+  background:#fff;
+  padding:28px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+
+/* ================= STORY ================= */
+
+.story{
+  background:var(--dark);
+  color:#fff;
+  padding:100px 0;
+}
+
+.story-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3rem;
+  align-items:center;
+}
+
+.story p{color:#cbd5f5}
+
+/* Review */
+
+.review{
+  margin-top:2rem;
+  background:rgba(255,255,255,.05);
+  padding:1.6rem;
+  border-left:4px solid var(--green);
+  border-radius:12px;
+}
+
+.review-text{
+  font-size:1.2rem;
+}
+
+.review-author{
+  margin-top:.5rem;
+  font-weight:600;
+  color:#cbd5f5;
+}
+
+/* ================= PROCESS ================= */
+/* ========== PROCESS ========== */
+
+.process{
+  padding:100px 0;
+  background:#f9fafb;
+}
+
+.process h2{
+  text-align:center;
+}
+
+.process .lead{
+  text-align:center;
+  max-width:650px;
+  margin:0 auto 3rem;
+  color:var(--muted);
+}
+
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+}
+
+.process-step{
+  background:#fff;
+  border-radius:var(--radius);
+  padding:28px;
+  box-shadow:var(--shadow);
+  position:relative;
+  transition:.25s ease;
+}
+
+.process-step:hover{
+  transform:translateY(-6px);
+}
+
+.process-step span{
+  position:absolute;
+  top:18px;
+  right:22px;
+  font-size:3rem;
+  font-weight:900;
+  color:rgba(10,102,194,0.08);
+}
+
+.process-step h4{
+  margin-top:0;
+  margin-bottom:.6rem;
+}
+
+.process-step p{
+  color:var(--muted);
+  font-size:.95rem;
+  line-height:1.6;
+}
 
 
-  
+/* ================= CTA ================= */
+
+.cta{
+  padding:70px 0;
+}
+
+.cta-card{
+  background:
+  linear-gradient(120deg,#0a66c2,#22c55e);
+  color:#fff;
+  padding:50px;
+  border-radius:var(--radius);
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.cta-card h2{
+  margin:0 0 .5rem;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  background:#020617;
+  color:#9ca3af;
+  padding:40px 0;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  gap:30px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+.hero-grid,
+.story-grid,
+.footer-grid{
+  grid-template-columns:1fr;
+}
+
+nav{display:none}
+
+.trust-row{
+  grid-template-columns:1fr;
+  gap:40px;
+}
+
+}
+
+</style>
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#hem" class="brand">
-        <img src="ungdomsflyttenlogaa.jpg" alt="Ungdomsflytten AB" class="logo" />
-        <span class="brand-name">Ungdomsflytten</span>
-      </a>
-      <nav class="nav">
-        <a href="#hem" class="nav-link">Hem</a>
-        <a href="#tjanster" class="nav-link">Tjänster</a>
-        <a href="#omoss" class="nav-link">Om oss</a>
-        <a href="#kontakt" class="nav-link">Kontakt</a>
-      </nav>
-    </div>
-  </header>
 
-  <main id="hem">
- <section class="hero">
-  <div class="hero-overlay"></div>
-  <div class="hero-inner">
-    <h1>Boka bortforsling snabbt - offert under en minut</h1>
-    <p>"Billigt, försäkrat och krångelfritt."</p>
+<!-- HEADER -->
+<header>
+<div class="container header-bar">
 
-    <div class="cta">
-      <a href="#kontakt" class="btn">Kontakta oss</a>
-    </div>
-  </div>
+<div class="brand">
+<img src="ungdomsflyttenlogaa.jpg">
+ungdomsflytten
+</div>
+
+<nav>
+<a href="#tjanster">Tjänster</a>
+<a href="#story">Vår idé</a>
+<a href="#process">Process</a>
+<a href="#kontakt">Kontakt</a>
+</nav>
+
+<a href="#kontakt" class="btn">Offert</a>
+
+</div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container hero-grid">
+
+<div class="reveal">
+
+<h1>Flytt utan <span>krångel</span>.</h1>
+
+<p>
+Ungdomsflytten är Stockholms okrångligaste flyttfirma.
+Snabb offert, raka priser och unga proffs.
+</p>
+
+<div class="hero-cta">
+<a href="#kontakt" class="btn">Få pris direkt</a>
+<a href="#tjanster" class="btn btn-green">Se tjänster</a>
+</div>
+
+</div>
+
+<div class="hero-form reveal" id="kontakt">
+
+<h3>Kontakta oss</h3>
+
+<form action="https://formspree.io/f/xovoabvp" method="POST">
+
+<div class="field">
+<label>Namn</label>
+<input name="namn" required>
+</div>
+
+<div class="field">
+<label>Telefon</label>
+<input name="telefon" required>
+</div>
+
+<div class="field">
+<label>E-post</label>
+<input type="email" name="email" required>
+</div>
+
+<div class="field">
+<label>Beskriv kort</label>
+<textarea rows="3" name="meddelande"></textarea>
+</div>
+
+<button class="btn" style="width:100%">Skicka →</button>
+
+</form>
+
+</div>
+
+</div>
 </section>
 
-<section class="section reviews" id="omdomen">
+<!-- TRUST -->
+<section class="trust">
+<div class="container trust-row reveal">
+
+<div class="trust-item">
+<img src="trus.svg" class="trust-logo">
+<span>Kundbetyg</span>
+</div>
+
+<div class="trust-item">
+<span>Försäkrat med</span><br>
+<img src="lansfor.png" class="trust-logo">
+</div>
+
+</div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="tjanster">
+<div class="container reveal">
+
+<h2>Vad vi hjälper dig med</h2>
+
+<div class="services-grid">
+
+<div class="service">
+<h3>Bortforsling</h3>
+<p>Hämtning, sortering & återvinning.</p>
+</div>
+
+<div class="service">
+<h3>Flytthjälp</h3>
+<p>Privat & företag. RUT-avdrag.</p>
+</div>
+
+<div class="service">
+<h3>Dödsbotömning</h3>
+<p>Respektfull helhetslösning.</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+<div class="container story-grid">
+
+<div class="reveal">
+
+<h2>Mer än ett flyttbolag</h2>
+
+<p>
+Ungdomsflytten startade med en enkel idé: att göra flyttbranschen
+rakare, schysstare och mer personlig.
+Vi ville bygga ett bolag där ansvar, yrkesstolthet och kundnöjdhet
+alltid kommer först.
+</p>
+
+<p>På bilden ser du Robin – en av grundarna bakom Ungdomsflytten.
+Ung, driven och extremt noggrann med detaljer.
+För honom är varje uppdrag personligt, och ett jobb är aldrig klart
+förrän kunden är 100 % nöjd.</p>
+
+<p>Vi tror på att ge unga riktiga möjligheter, riktiga jobb
+och chansen att växa – både som yrkespersoner och människor.
+När du anlitar oss får du inte bara en smidig flytt,
+du investerar också i nästa generation entreprenörer. Vi arbetar även för att kunder såsom Marina ska uttrycka sig så som hon gjorde i Trustpilot nedan. :)</p>
+
+
+<div class="review">
+
+<p class="review-text">
+“Vi är mer än nöjda med deras arbete!! De tog med sig allt bråte och blev klara otroligt snabbt.
+Kan varmt rekommendera! ✨”
+</p>
+
+<p class="review-author">– Marina S</p>
+
+</div>
+
+</div>
+
+<img src="WhatsApp Image 2025-12-22 at 21.15.36 (3).jpeg" class="reveal">
+
+</div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
   <div class="container">
-    <h2>Vad våra kunder säger</h2>
-    <p class="lead">Ärliga omdömen från kunder som fått hjälp med bortforsling, flytt och tömning.</p>
 
-    <div class="reviews-row">
-      <article class="review-card">
-        <div class="review-stars">
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-        </div>
-        <h3>Snabba och noggranna</h3>
-        <p class="review-text">
-          Bra första kontakt. Vi gick gemensamt igenom uppdragsbeskrivningen och kom överens om tidsaspekten. Arbetet utfördes helt enligt överenskommelse.
-        </p>
-        <p class="review-name">Åsa</p>
-      </article>
+    <h2>Så går det till</h2>
+    <p class="lead">
+      En tydlig process från första kontakt till färdigt uppdrag.
+      Inga frågetecken. Inga överraskningar.
+    </p>
 
-      <article class="review-card">
-        <div class="review-stars">
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-        </div>
-        <h3>Toppengrabbar!</h3>
-        <p class="review-text">
-          Trevliga och lyhörda! Tog reda på hur det skulle göras och jobbade hårt med uppgiften. Kan varmt rekommendera grabbarna som är jäkligt duktiga asså.
-        </p>
-        <p class="review-name">Anders</p>
-      </article>
+    <div class="process-grid">
 
-      <article class="review-card">
-        <div class="review-stars">
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-        </div>
-        <h3>Jättenöjda med hjälpen</h3>
-        <p class="review-text">
-          Alla vi pratade med var trevliga och lyhörda. Ungdomarna jobbade på bra och lämnade snyggt efter sig. Rekommenderas varmt och kommer anlitas igen!
-        </p>
-        <p class="review-name">Alexander</p>
-      </article>
-
-      <article class="review-card">
-        <div class="review-stars">
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-        </div>
-        <h3>Bra och seriöst företag</h3>
-        <p class="review-text">
-          Duktiga, trevliga ungdomar som gör ett riktigt bra jobb. Kändes tryggt från första kontakt till klart uppdrag och kommer definitivt att anlita grabbarna igen.
-        </p>
-        <p class="review-name">Abed</p>
-      </article>
-
-      <article class="review-card">
-        <div class="review-stars">
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-          <span class="tp-star">★</span>
-        </div>
-        <h3>Duktiga, pålitliga och trevliga</h3>
-        <p class="review-text">
-          Väldigt nöjd med både bemötande och resultat. Kom i tid, jobbade på bra och höll vad de lovat.
-        </p>
-        <p class="review-name">Marianne</p>
-      </article>
-    </div>
-
-    <div class="trustpilot-badge">
-      <div class="tp-logo-row">
-        <span class="tp-logo-star">★</span>
-        <span class="tp-logo-star">★</span>
-        <span class="tp-logo-star">★</span>
-        <span class="tp-logo-star">★</span>
-        <span class="tp-logo-star">★</span>
-      </div>
-      <div class="tp-text">
-        Baserat på omdömen på <span>Trustpilot</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section id="process" class="section process">
-  <div class="process-overlay"></div>
-  <div class="container process-inner">
-    <h2>Så enkelt bokar du</h2>
-    <p class="lead process-lead">Enkel, transparent och tryggt. Boka bortforsling på några klick.</p>
-
-    <div class="steps-row">
-      <article class="step-card">
-        <div class="icon">1</div>
-        <h3>Fyll i formuläret</h3>
-        <p>Berätta kort vad du vill ha hjälp med. Det tar 1–2 minuter.</p>
-      </article>
-      <article class="step-card">
-        <div class="icon">2</div>
-        <h3>Snabb prisbild</h3>
-        <p>Vi räknar på uppdraget och skickar en preliminär offert till din e-post.</p>
-      </article>
-      <article class="step-card">
-        <div class="icon">3</div>
-        <h3>Bekräfta bokningen</h3>
-        <p>Du godkänner priset digitalt. Du får bokningsbekräftelse och regbevis.</p>
-      </article>
-      <article class="step-card">
-        <div class="icon">4</div>
-        <h3>Personlig kontakt</h3>
-        <p>Vi ringer samma dag eller nästa vardag om vi behöver stämma av detaljer.</p>
-      </article>
-      <article class="step-card">
-        <div class="icon">5</div>
-        <h3>Vi genomför uppdraget</h3>
-        <p>Vi bär, sorterar och kör allt till återvinning. Tippavgift redovisas öppet.</p>
-      </article>
-      <article class="step-card">
-        <div class="icon">6</div>
-        <h3>Allt klart</h3>
-        <p>Du får kvitto och kan luta dig tillbaka. Gillar du oss? Lämna gärna ett omdöme.</p>
-      </article>
-    </div>
-
-    <div class="process-cta">
-      <a href="https://www.jotform.com/build/253142594573057" class="btn btn-main">Boka hjälp</a>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
-   <section id="tjanster" class="section services">
-  <div class="services-overlay"></div>
-  <div class="container">
-    <h2>Våra tjänster</h2>
-    <p class="lead services-lead">Bortforsling, flytthjälp och dödsbo­tömning – anpassat efter dina behov.</p>
-    <div class="cards">
-      <article class="card">
-        <h3>Bortforsling</h3>
-        <p>Vi hämtar, sorterar och kör bort möbler, skräp och byggavfall på ett miljövänligt sätt.</p>
-      </article>
-      <article class="card">
-        <h3>Flytthjälp</h3>
-        <p>Smidig flytt med RUT-avdrag för privatpersoner. Vi bär, packar och kör.</p>
-      </article>
-      <article class="card">
-        <h3>Tömning av dödsbo</h3>
-        <p>Respektfull och noggrann tömning, inklusive bortforsling och enklare städning vid behov.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section id="omoss" class="section section-alt">
-  <div class="container about-grid">
-    <div class="about-text">
-      <h2>Om oss</h2>
-      <p>
-        Ungdomsflytten föddes ur entreprenörsresan bakom <strong>UngTrädgård</strong>, där vi gett över
-        60 ungdomar riktiga jobb på kontrakt. Vi såg hur mycket ansvar, energi och
-        yrkesstolthet som växte när unga fick chansen – och ville skapa en plattform där det händer varje dag.
-      </p>
-      <p>
-        Idag hjälper vi kunder med bortforsling, flytt och tömningar – snabbt, tryggt och med hjärtat på rätt ställe.
-        När du anlitar oss får du professionell hjälp och samtidigt möjligheten att bidra till fler ungdomar i arbete.
-      </p>
-      <p>
-        Vår vision är att bli Sveriges mest drivna ungdomsdrivna servicebolag – där varje uppdrag skapar fler jobb,
-        mer erfarenhet och ett bättre samhälle.
-      </p>
-    </div>
-
-    <div class="about-gallery">
-      <img src="croppedungdom.png" alt="Ungdomsflytten team" />
-    <img src="croppedungdom.png" alt="Ungdomsflytten team" />
-    <img src="croppedungdom.png" alt="Ungdomsflytten team" />
-      <img src="croppedungdom.png" alt="Ungdomsflytten team" />
-    </div>
-
-
-  </section>
-
-<section id="forsakring" class="section section-alt trygghet">
-  <div class="container trygghet-grid">
-    <div>
-      <h2>Trygghet & försäkring</h2>
-      <p>
-        När du anlitar Ungdomsflytten ska det kännas tryggt från första kontakt till avslutat uppdrag.
-        Vi arbetar med tydliga priser, ordning och reda och ansvarar fullt ut för det arbete vi utför.
-      </p>
-      <p>
-        Vi använder <strong>Länsförsäkringar</strong> som försäkringsbolag, vilket innebär att både du som kund
-        och våra medarbetare omfattas av gällande ansvarsförsäkring under uppdraget.
-      </p>
-      <p>
-        Exakta villkor framgår alltid av offert och bokningsbekräftelse, och du är alltid välkommen att fråga
-        om du undrar över något innan vi sätter igång.
-      </p>
-      </div>
-
-      <div class="trygghet-logo-card">
-      <div class="trygghet-logo-inner">
-        <img src="länsförsäkringar.png" alt="Länsförsäkringar" />
-    </div>
-  </div>
-  </div>
-</section>
-
-  </div>
-</section>
-
-<section id="kontakt" class="section contact-section">
-  <div class="container">
-    <h2>Kontakta oss</h2>
-    <p class="lead">Fyll i formuläret så återkommer vi inom en minut. Tror du oss inte? Testa.</p>
-
-    <div class="contact-layout">
-      <!-- Form -->
-      <div class="contact-card form-card">
-        <form action="https://formspree.io/f/xovoabvp" method="POST">
-          <div class="field">
-            <label for="namn">Fullständigt namn</label>
-            <input id="namn" name="namn" type="text" required>
-          </div>
-
-          <div class="field">
-            <label for="email">E-post</label>
-            <input id="email" name="email" type="email" required>
-          </div>
-
-          <div class="field">
-            <label for="tel">Telefonnummer</label>
-            <input id="tel" name="telefon" type="tel" required>
-          </div>
-
-          <div class="field">
-            <label for="meddelande">Vad vill du ha hjälp med?</label>
-            <textarea id="meddelande" name="meddelande" rows="5" placeholder="Beskriv kort vad du vill ha hjälp med..." required></textarea>
-          </div>
-
-          <div class="actions">
-            <button type="submit" class="btn">Skicka</button>
-          </div>
-        </form>
-      </div>
-
-      <!-- Fakta-ruta -->
-      <aside class="contact-card fact-card">
-        <h4>Visste du att…</h4>
+      <div class="process-step">
+        <span>01</span>
+        <h4>Förfrågan & behovsanalys</h4>
         <p>
-          …ungdomsarbetslösheten i Sverige ligger runt <strong>24&nbsp;%</strong> bland unga 15–24&nbsp;år?  
-          När du anlitar Ungdomsflytten bidrar du direkt till att skapa riktiga jobb och möjligheter för unga.
+          Du skickar in din förfrågan via formulär eller telefon.
+          Vi går igenom dina behov, volym, tillgänglighet och eventuella
+          specialönskemål.
         </p>
+      </div>
+
+      <div class="process-step">
+        <span>02</span>
+        <h4>Tydlig offert</h4>
         <p>
-          Vi brinner för entreprenörskap och samhällsnytta — varje uppdrag hjälper oss växa, skapa fler arbetstillfällen och bevisa att unga kan leverera professionellt, snabbt och ansvarsfullt.
+          Du får en rak och transparent offert utan dolda kostnader.
+          Vi anpassar pris och upplägg efter ditt uppdrag.
         </p>
-        <div class="mini">Källa: SCB, Arbetskraftsundersökningarna (AKU), 2025.</div>
-      </aside>
+      </div>
+
+      <div class="process-step">
+        <span>03</span>
+        <h4>Bokning & planering</h4>
+        <p>
+          När du godkänner offerten bokar vi in uppdraget och planerar
+          bemanning, fordon och tidsåtgång.
+        </p>
+      </div>
+
+      <div class="process-step">
+        <span>04</span>
+        <h4>Utförande</h4>
+        <p>
+          Våra utbildade team genomför arbetet effektivt,
+          säkert och med full försäkring.
+          Vi hanterar ditt bohag med största respekt.
+        </p>
+      </div>
+
+
+    
+
     </div>
   </div>
 </section>
 
 
-  </main>
+<!-- CTA -->
+<section class="cta">
 
- <footer class="site-footer">
-  <div class="footer-top">
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <h4>Ungdomsflytten</h4>
-        <p>
-          Ungdomsdrivet bortforslingsbolag med bas i Stockholm. Vi kombinerar enkel bokning,
-          tydliga priser och riktiga jobb för unga. Vårt mål är att göra det lätt att göra rätt – för både dig och miljön. Vårt mål är att minska ungdomsarbetslöshet och samtidigt kombinera hjälp med att få ut fler ungdomar via
-          vår tydliga plattform. Enkelt att boka, offert på en minut, när du vill.
-        </p>
-      </div>
-      <div class="footer-col">
-        <h4>Snabblänkar</h4>
-        <ul>
-          <li><a href="#hem">Hem</a></li>
-          <li><a href="#tjanster">Våra tjänster</a></li>
-          <li><a href="#process">Så funkar det</a></li>
-          <li><a href="#kontakt">Kontakta oss</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Kontakt</h4>
-        <p>
-          kontakt@ungdomsflytten.se<br>
-          073 508 62 99<br>
-          Org.nr 559550-7236
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="container footer-bottom-inner">
-      <span>© 2025 Ungdomsflytten. Alla rättigheter förbehålls.</span>
-    </div>
-  </div>
+<div class="container reveal">
+
+<div class="cta-card">
+
+<h2>Redo att komma igång?</h2>
+
+<p>Vi svarar snabbt. Inga konstigheter.</p>
+
+<a href="#kontakt" class="btn btn-green">Få offert nu</a>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+<div class="container footer-grid">
+
+<div>
+<strong>Ungdomsflytten</strong>
+<p>Stockholms okrångligaste flyttfirma.</p>
+</div>
+
+<div>
+<p>kontakt@ungdomsflytten.se</p>
+<p>072 327 11 08</p>
+</div>
+
+<div>
+<p>Org.nr 559550-7236</p>
+<p>© 2026</p>
+</div>
+
+</div>
 </footer>
 
-  
+<!-- SCROLL ANIMATION SCRIPT -->
+<script>
 
-  <script>
-    // Smooth scroll (native via CSS, men fallback för äldre)
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id = a.getAttribute('href');
-        if(id.length>1){
-          e.preventDefault();
-          document.querySelector(id).scrollIntoView({behavior:'smooth'});
-        }
-      });
-    });
-  </script>
+const reveals = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver(entries => {
+
+entries.forEach(entry => {
+
+if(entry.isIntersecting){
+entry.target.classList.add('active');
+}
+
+});
+
+},{ threshold:0.15 });
+
+reveals.forEach(r => observer.observe(r));
+
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
